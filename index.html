@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Scheduler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-calendar-alt"></i> Meeting Scheduler</h1>
+            <p>Organize your meetings with ease</p>
+        </div>
+
+        <!-- Authentication Section -->
+        <div id="authSection" class="auth-section">
+            <h2>Welcome to Meeting Scheduler</h2>
+            <p style="margin: 20px 0; color: #666;">Sign in with Google to get started</p>
+            <button id="googleSignInBtn" class="btn btn-google">
+                <i class="fab fa-google"></i>
+                Sign in with Google
+            </button>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="appSection" class="app-section">
+            <div class="user-info">
+                <p>Welcome, <span id="userEmail"></span></p>
+                <button id="signOutBtn" class="btn btn-secondary">Sign Out</button>
+            </div>
+
+            <div class="controls">
+                <button id="addMeetingBtn" class="btn">
+                    <i class="fas fa-plus"></i> Add Meeting
+                </button>
+            </div>
+
+            <div id="meetingsContainer" class="meetings-grid">
+                <!-- Meetings will be rendered here -->
+            </div>
+        </div>
+
+        <!-- Meeting Modal -->
+        <div id="meetingModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModalBtn">&times;</span>
+                <h2 id="modalTitle">Add New Meeting</h2>
+                <form id="meetingForm">
+                    <input type="hidden" id="meetingId">
+                    
+                    <div class="form-group">
+                        <label for="meetingTitle">Meeting Title</label>
+                        <input type="text" id="meetingTitle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="meetingDate">Date</label>
+                        <input type="date" id="meetingDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="meetingTime">Time</label>
+                        <input type="time" id="meetingTime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="meetingDuration">Duration (minutes)</label>
+                        <select id="meetingDuration" required>
+                            <option value="15">15 minutes</option>
+                            <option value="30" selected>30 minutes</option>
+                            <option value="45">45 minutes</option>
+                            <option value="60">1 hour</option>
+                            <option value="90">1.5 hours</option>
+                            <option value="120">2 hours</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="deleteMeetingBtn" class="btn btn-danger" style="display: none;">Delete</button>
+                        <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn">Save Meeting</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts - IMPORTANT: These must be loaded BEFORE your custom script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.1/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.1/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.1/firebase-firestore-compat.min.js"></script>
+
+   <script src="script.js"></script>
+</body>
+</html>
